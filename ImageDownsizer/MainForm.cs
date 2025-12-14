@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace ImageDownsizer
 {
     public partial class MainForm : Form
@@ -19,7 +17,6 @@ namespace ImageDownsizer
             };
 
             DialogResult dialogResult = openFileDialog.ShowDialog();
-
             if (dialogResult is not DialogResult.OK) return;
 
             textBoxImagePath.Text = openFileDialog.FileName;
@@ -27,12 +24,12 @@ namespace ImageDownsizer
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
-            using (ProgressForm progressForm = new ProgressForm())
-            {
-                progressForm.Show();
-                Application.DoEvents();
-                Thread.Sleep(5000);
-            }
+            DownsizerService downsizerService = new DownsizerService();
+            ProgressForm progressForm = new ProgressForm();
+
+            progressForm.AttachService(downsizerService);
+            progressForm.Show();
+            downsizerService.Start();
         }
     }
 }

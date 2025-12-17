@@ -41,6 +41,14 @@
             }
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (downsizerService != null)
+                downsizerService.PercentageChanged -= OnPercentageChanged;
+
+            base.OnFormClosing(e);
+        }
+
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             IsCancelled = true;

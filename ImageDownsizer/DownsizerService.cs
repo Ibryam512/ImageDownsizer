@@ -11,6 +11,7 @@ namespace ImageDownsizer
 
     public class DownsizerService
     {
+        private const int chunks = 12;
         private ManualResetEventSlim cancelEvent = new();
         private int percentage = 0;
         private readonly object progressLock = new();
@@ -24,6 +25,8 @@ namespace ImageDownsizer
 
         private void UpdateProgress(int newPercentage)
         {
+            if (cancelEvent.IsSet) return;
+
             lock (progressLock)
             {
                 if (newPercentage > percentage)
@@ -96,12 +99,7 @@ namespace ImageDownsizer
 
                 for (int y = 0; y < newHeight; y++)
                 {
-                    if (cancelEvent.Wait(0))
-                    {
-                        original.UnlockBits(originalData);
-                        result.UnlockBits(resultData);
-                        return null;
-                    }
+                    if (cancelEvent.Wait(0)) return null;
 
                     for (int x = 0; x < newWidth; x++)
                     {
@@ -160,8 +158,6 @@ namespace ImageDownsizer
 
             for (int y = p.StartY; y < p.EndY; y++)
             {
-                if (cancelEvent.Wait(0)) return;
-
                 for (int x = 0; x < p.NewWidth; x++)
                 {
                     double srcX = x * p.ScaleX;
@@ -182,7 +178,7 @@ namespace ImageDownsizer
                 int progress = ((y - p.StartY + 1) * 100) / (p.EndY - p.StartY);
                 if (progress % 10 == 0)
                 {
-                    UpdateProgress((p.ChunkIndex * 100 + progress) / Environment.ProcessorCount);
+                    UpdateProgress((p.ChunkIndex * 100 + progress) / chunks);
                 }
             }
         }
@@ -219,12 +215,13 @@ namespace ImageDownsizer
                 double scaleX = (double)(original.Width - 1) / (newWidth - 1);
                 double scaleY = (double)(original.Height - 1) / (newHeight - 1);
 
-                int chunks = 8;
                 Thread[] threads = new Thread[chunks];
                 int chunkHeight = newHeight / chunks;
 
                 for (int i = 0; i < chunks; i++)
                 {
+                    if (cancelEvent.Wait(0)) return null;
+
                     int startY = i * chunkHeight;
                     int endY = (i == chunks - 1) ? newHeight : (i + 1) * chunkHeight;
 
@@ -272,10 +269,22 @@ namespace ImageDownsizer
             {
                 Stopwatch sw = Stopwatch.StartNew();
                 Bitmap result = useParallel ? DownscaleParallel(original, scaleFactor) : DownscaleSequential(original, scaleFactor);
+
+                if (cancelEvent.IsSet) return;
+                
                 sw.Stop();
-                MessageBox.Show($"{sw.ElapsedMilliseconds}ms");
-                result.Save(@$"C:\downscaled\{DateTime.UtcNow}");
+
+                string directory = @"C:\downscaled";
+                Directory.CreateDirectory(directory);
+                string path = Path.Combine(directory, $"{Guid.NewGuid()}.jpeg");
+                result.Save(path, ImageFormat.Jpeg);
+
+                string way = useParallel ? "Parallel" : "Consequential";
+                MessageBox.Show($"{way} - {scaleFactor}% - {sw.ElapsedMilliseconds}ms");
+                
             });
+
+            t.Start();
         }
 
         public void Cancel()

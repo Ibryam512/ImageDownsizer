@@ -27,9 +27,11 @@ namespace ImageDownsizer
             DownsizerService downsizerService = new DownsizerService();
             ProgressForm progressForm = new ProgressForm();
 
+            Bitmap image = Image.FromFile(textBoxImagePath.Text) as Bitmap;
+
             progressForm.AttachService(downsizerService);
             progressForm.Show();
-            downsizerService.Start();
+            downsizerService.Start(image, (double)numericUpDownScalingFactor.Value, radioButtonParallel.Checked);
         }
     }
 }

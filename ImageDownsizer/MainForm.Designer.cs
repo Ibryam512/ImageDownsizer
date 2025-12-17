@@ -37,8 +37,8 @@ namespace ImageDownsizer
             numericUpDownScalingFactor = new NumericUpDown();
             buttonSubmit = new Button();
             groupBoxRadioButtons = new GroupBox();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            radioButtonParallel = new RadioButton();
+            radioButtonConsequential = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)trackBarScalingFactor).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownScalingFactor).BeginInit();
             groupBoxRadioButtons.SuspendLayout();
@@ -49,9 +49,9 @@ namespace ImageDownsizer
             labelTitle.Anchor = AnchorStyles.Top;
             labelTitle.AutoSize = true;
             labelTitle.Font = new Font("Segoe UI", 24F);
-            labelTitle.Location = new Point(319, 53);
+            labelTitle.Location = new Point(279, 40);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(327, 54);
+            labelTitle.Size = new Size(264, 45);
             labelTitle.TabIndex = 0;
             labelTitle.Text = "Image Downsizer";
             // 
@@ -60,10 +60,9 @@ namespace ImageDownsizer
             buttonSelectImage.Anchor = AnchorStyles.Top;
             buttonSelectImage.Cursor = Cursors.Hand;
             buttonSelectImage.Font = new Font("Segoe UI", 12F);
-            buttonSelectImage.Location = new Point(522, 175);
-            buttonSelectImage.Margin = new Padding(3, 4, 3, 4);
+            buttonSelectImage.Location = new Point(457, 131);
             buttonSelectImage.Name = "buttonSelectImage";
-            buttonSelectImage.Size = new Size(153, 47);
+            buttonSelectImage.Size = new Size(134, 35);
             buttonSelectImage.TabIndex = 1;
             buttonSelectImage.Text = "Select Image";
             buttonSelectImage.UseVisualStyleBackColor = true;
@@ -75,24 +74,22 @@ namespace ImageDownsizer
             textBoxImagePath.BackColor = SystemColors.Window;
             textBoxImagePath.Font = new Font("Segoe UI", 12F);
             textBoxImagePath.ForeColor = SystemColors.WindowText;
-            textBoxImagePath.Location = new Point(190, 180);
-            textBoxImagePath.Margin = new Padding(3, 4, 3, 4);
+            textBoxImagePath.Location = new Point(166, 135);
             textBoxImagePath.Name = "textBoxImagePath";
             textBoxImagePath.PlaceholderText = "Image path...";
             textBoxImagePath.ReadOnly = true;
             textBoxImagePath.ScrollBars = ScrollBars.Horizontal;
-            textBoxImagePath.Size = new Size(279, 34);
+            textBoxImagePath.Size = new Size(245, 29);
             textBoxImagePath.TabIndex = 2;
             // 
             // trackBarScalingFactor
             // 
             trackBarScalingFactor.Anchor = AnchorStyles.Top;
-            trackBarScalingFactor.Location = new Point(190, 252);
-            trackBarScalingFactor.Margin = new Padding(3, 4, 3, 4);
+            trackBarScalingFactor.Location = new Point(166, 189);
             trackBarScalingFactor.Maximum = 100;
             trackBarScalingFactor.Minimum = 1;
             trackBarScalingFactor.Name = "trackBarScalingFactor";
-            trackBarScalingFactor.Size = new Size(280, 56);
+            trackBarScalingFactor.Size = new Size(245, 45);
             trackBarScalingFactor.TabIndex = 3;
             trackBarScalingFactor.Value = 1;
             // 
@@ -101,20 +98,18 @@ namespace ImageDownsizer
             numericUpDownScalingFactor.Anchor = AnchorStyles.Top;
             numericUpDownScalingFactor.DataBindings.Add(new Binding("Value", trackBarScalingFactor, "Value", true, DataSourceUpdateMode.OnPropertyChanged));
             numericUpDownScalingFactor.Font = new Font("Segoe UI", 12F);
-            numericUpDownScalingFactor.Location = new Point(522, 252);
-            numericUpDownScalingFactor.Margin = new Padding(3, 4, 3, 4);
+            numericUpDownScalingFactor.Location = new Point(457, 189);
             numericUpDownScalingFactor.Name = "numericUpDownScalingFactor";
-            numericUpDownScalingFactor.Size = new Size(153, 34);
+            numericUpDownScalingFactor.Size = new Size(134, 29);
             numericUpDownScalingFactor.TabIndex = 4;
             // 
             // buttonSubmit
             // 
             buttonSubmit.Anchor = AnchorStyles.Top;
             buttonSubmit.Font = new Font("Segoe UI", 16F);
-            buttonSubmit.Location = new Point(367, 456);
-            buttonSubmit.Margin = new Padding(3, 4, 3, 4);
+            buttonSubmit.Location = new Point(321, 342);
             buttonSubmit.Name = "buttonSubmit";
-            buttonSubmit.Size = new Size(197, 57);
+            buttonSubmit.Size = new Size(172, 43);
             buttonSubmit.TabIndex = 5;
             buttonSubmit.Text = "Submit";
             buttonSubmit.UseVisualStyleBackColor = true;
@@ -123,47 +118,43 @@ namespace ImageDownsizer
             // groupBoxRadioButtons
             // 
             groupBoxRadioButtons.Anchor = AnchorStyles.Top;
-            groupBoxRadioButtons.Controls.Add(radioButton2);
-            groupBoxRadioButtons.Controls.Add(radioButton1);
+            groupBoxRadioButtons.Controls.Add(radioButtonParallel);
+            groupBoxRadioButtons.Controls.Add(radioButtonConsequential);
             groupBoxRadioButtons.FlatStyle = FlatStyle.Flat;
             groupBoxRadioButtons.Font = new Font("Segoe UI", 12F);
-            groupBoxRadioButtons.Location = new Point(190, 320);
-            groupBoxRadioButtons.Margin = new Padding(3, 4, 3, 4);
+            groupBoxRadioButtons.Location = new Point(166, 240);
             groupBoxRadioButtons.Name = "groupBoxRadioButtons";
-            groupBoxRadioButtons.Padding = new Padding(3, 4, 3, 4);
-            groupBoxRadioButtons.Size = new Size(486, 69);
+            groupBoxRadioButtons.Size = new Size(425, 52);
             groupBoxRadioButtons.TabIndex = 6;
             groupBoxRadioButtons.TabStop = false;
             // 
-            // radioButton2
+            // radioButtonParallel
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(333, 25);
-            radioButton2.Margin = new Padding(3, 4, 3, 4);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(97, 32);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "parallel";
-            radioButton2.UseVisualStyleBackColor = true;
+            radioButtonParallel.AutoSize = true;
+            radioButtonParallel.Location = new Point(291, 19);
+            radioButtonParallel.Name = "radioButtonParallel";
+            radioButtonParallel.Size = new Size(79, 25);
+            radioButtonParallel.TabIndex = 1;
+            radioButtonParallel.TabStop = true;
+            radioButtonParallel.Text = "parallel";
+            radioButtonParallel.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioButtonConsequential
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(45, 25);
-            radioButton1.Margin = new Padding(3, 4, 3, 4);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(154, 32);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "consequential";
-            radioButton1.UseVisualStyleBackColor = true;
+            radioButtonConsequential.AutoSize = true;
+            radioButtonConsequential.Location = new Point(39, 19);
+            radioButtonConsequential.Name = "radioButtonConsequential";
+            radioButtonConsequential.Size = new Size(124, 25);
+            radioButtonConsequential.TabIndex = 0;
+            radioButtonConsequential.TabStop = true;
+            radioButtonConsequential.Text = "consequential";
+            radioButtonConsequential.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
             Controls.Add(groupBoxRadioButtons);
             Controls.Add(buttonSubmit);
             Controls.Add(numericUpDownScalingFactor);
@@ -171,7 +162,6 @@ namespace ImageDownsizer
             Controls.Add(textBoxImagePath);
             Controls.Add(buttonSelectImage);
             Controls.Add(labelTitle);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "MainForm";
             Text = "Image Downsizer";
             ((System.ComponentModel.ISupportInitialize)trackBarScalingFactor).EndInit();
@@ -191,7 +181,7 @@ namespace ImageDownsizer
         private NumericUpDown numericUpDownScalingFactor;
         private Button buttonSubmit;
         private GroupBox groupBoxRadioButtons;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private RadioButton radioButtonParallel;
+        private RadioButton radioButtonConsequential;
     }
 }

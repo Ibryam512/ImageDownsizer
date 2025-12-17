@@ -37,24 +37,26 @@
             // 
             labelStatus.AutoSize = true;
             labelStatus.Font = new Font("Segoe UI", 12F);
-            labelStatus.Location = new Point(20, 20);
+            labelStatus.Location = new Point(18, 15);
             labelStatus.Name = "labelStatus";
-            labelStatus.Size = new Size(154, 28);
+            labelStatus.Size = new Size(124, 21);
             labelStatus.TabIndex = 0;
             labelStatus.Text = "Resizing image...";
             // 
             // progressBar
             // 
-            progressBar.Location = new Point(20, 69);
+            progressBar.Location = new Point(18, 52);
+            progressBar.Margin = new Padding(3, 2, 3, 2);
             progressBar.Name = "progressBar";
-            progressBar.Size = new Size(342, 29);
+            progressBar.Size = new Size(299, 22);
             progressBar.TabIndex = 1;
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(376, 69);
+            buttonCancel.Location = new Point(329, 52);
+            buttonCancel.Margin = new Padding(3, 2, 3, 2);
             buttonCancel.Name = "buttonCancel";
-            buttonCancel.Size = new Size(94, 29);
+            buttonCancel.Size = new Size(82, 22);
             buttonCancel.TabIndex = 2;
             buttonCancel.Text = "Cancel";
             buttonCancel.UseVisualStyleBackColor = true;
@@ -62,13 +64,14 @@
             // 
             // ProgressForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(482, 132);
+            ClientSize = new Size(422, 99);
             Controls.Add(buttonCancel);
             Controls.Add(progressBar);
             Controls.Add(labelStatus);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "ProgressForm";
